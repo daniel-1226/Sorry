@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffdde1;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .emoji-big { 
+            font-size: 80px; 
+            animation: jump 1s infinite; 
+            display: inline-block; 
+        }
+
+        @keyframes jump { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-20px); } 
+        }
+
+        .buttons { 
+            display: flex; 
+            gap: 15px; 
+            margin-top: 20px; 
+            justify-content: center; 
+        }
+
+        button { 
+            padding: 10px 20px; 
+            font-size: 18px; 
+            cursor: pointer; 
+            border: none; 
+            border-radius: 10px; 
+            font-weight: bold;
+        }
+
+        #yesBtn { background-color: #4CAF50; color: white; }
+        #noBtn { background-color: #f44336; color: white; }
+
+        h1 { margin: 10px 0; color: #d63384; }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div class="emoji-big">🐻</div>
+        <h1 id="question">Can you forgive me??</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="acceptLove()">YES</button>
+            <button id="noBtn" onclick="rejectLove()">NO</button>
+        </div>
+    </div>
+
+    <script>
+        let noCount = 0;
+        const messages = [
+            "Please?", 
+            "Give me a chance!", 
+            "Are you sure?", 
+            "Think again!", 
+            "You might regret this!", 
+            "One last chance!", 
+            "Pretty please?", 
+            "Don't break my heart!"
+        ];
+
+        function rejectLove() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            
+            // Palitan ang text ng NO button
+            if (noCount < messages.length) {
+                noBtn.innerText = messages[noCount];
+                noCount++;
+            }
+            
+            // Palakihin ang YES button
+            let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 5) + 'px';
+            yesBtn.style.padding = (parseInt(yesBtn.style.padding || '10') + 5) + 'px';
+        }
+
+        function acceptLove() {
+            document.getElementById('container').innerHTML = `
+                <div class="emoji-big">🥰</div>
+                <h1>YAYAYAYAYAYAY I LOVE YOU SO MUCH MY BABYYYYYY SORRYY❤️</h1>
+                
+            `;
+        }
+    </script>
+</body>
+</html>
